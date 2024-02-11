@@ -1,5 +1,5 @@
 * {
-    color: #b2b2b6;
+    /* color: #b2b2b6; */
     margin: 0;
     padding: 0;
     font-size: 1rem;
@@ -8,6 +8,7 @@
 }
 
 body {
-    color: #9aacc6 !important;
-    background-color: #021524 !important;
+    position: relative;
+    /* color: #9aacc6 !important;
+    background-color: #021524 !important; */
 }

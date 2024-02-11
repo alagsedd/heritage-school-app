@@ -1,0 +1,70 @@
+/* styles for 300px */
+.parent {
+    /* border: 1px solid  deeppink; */
+    margin: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.descriptionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid  #9aacc6;
+    height: 20rem;
+    width: 95%;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid  #9aacc6; */
+}
+.title span {
+    letter-spacing: 0.01rem;
+    text-align: center;
+    color:  #fbf189;
+    font-weight: 500;
+    font-size: 1.6rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif   ;
+
+}
+.desc {
+    text-align: center;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+.image {
+    filter: contrast(115%);
+    width: 97%; 
+    height: 20rem;
+    border-radius: 5px;
+    object-fit: cover;
+}
+.imgCon  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 320px) {
+    .descriptionCard {
+        width: 19.5rem;
+    }
+    .image {
+        /* width: 19.5rem; */
+    }
+}
+
+@media screen and (min-width: 360px) {
+    .descriptionCard {
+        width: 21rem;
+    }
+    .image {
+        /* width: 19.5rem; */
+    }
+}

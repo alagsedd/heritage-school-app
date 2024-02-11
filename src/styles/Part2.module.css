@@ -1,0 +1,65 @@
+/* styles for 300px */
+.parent {
+    display: flex;
+    overflow-x: scroll;
+    padding: 0.4rem;
+    margin-top: 0.4rem;
+}
+.header1 {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.header1 span {
+    font-size: 1.7rem;
+    color:  #fbf189;
+    font-weight: 500;
+}
+.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background-color: #109aef;
+    padding: 0.3rem;
+    margin: 0.4rem;
+    width: 14rem;
+    height: 10rem;
+}
+.one p {
+    padding: 0.3rem;
+    margin-top: 0.1rem;
+    color: #fff;
+}
+
+.two {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    padding: 0.3rem;
+    margin: 0.4rem;
+    width: 14rem;
+    height: 10rem;
+    background-color: rgb(225, 30, 134);
+}
+.two p {
+    color: #fff;
+    margin-top: 0.3rem;
+}
+.header2 {
+    padding-left: 0.3rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+.header2 span {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #fff;
+}
+

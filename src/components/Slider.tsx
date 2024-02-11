@@ -6,72 +6,106 @@ import {
   A11y,
   Autoplay,
 } from "swiper/modules";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-// import p1 from "../assets/graduation-images/grad1.webp";
-import p2 from "../assets/freshers/p10.jpeg";
-import p3 from "../assets/freshers/p2.jpeg";
-import p4 from "../assets/freshers/p3.jpeg";
-import p5 from "../assets/freshers/p4.jpeg";
-import p6 from "../assets/freshers/p5.jpeg";
-import p7 from "../assets/freshers/p6.jpeg";
-import p8 from "../assets/freshers/p7.jpeg";
-import p9 from "../assets/freshers/p8.jpeg";
-import p10 from "../assets/freshers/p9.jpeg";
+import p1 from "../assets/freshers/p1.jpeg";
+import p2 from "../assets/freshers/p2.jpeg";
+import p3 from "../assets/freshers/p3.jpeg";
+import nur1 from "../assets/others/nur1.jpeg";
+import lib1 from "../assets/others/lib1.jpeg";
+import group1 from "../assets/others/group1.jpeg";
+import gra1 from "../assets/graduation-images/grad1.webp";
+import InfoCard from "../cards/InfoCard";
 
 const Slider = () => {
-  const slides = [p5, p4, p2, p3, p6, p7, p8, p9, p10];
+
+  const infoCards = [
+    {
+      id: 1,
+      header: "WELCOME FRESHERS",
+      buttonInfo: "Enroll now",
+      image: p1,
+      desc: "New students at Heritage Christian University College bring energy and curiosity to campus life. Engaging in orientation, connecting with peers, and exploring academics, they thrive in a supportive environment, setting the stage for a transformative higher education experience.",
+    },
+    {
+      id: 2,
+      header: "Discover Excellence in Nursing Education",
+      nur1: "Read more",
+      buttonInfo: "Read more",
+      image: nur1,
+      desc: " Explore a dynamic community of dedicated students at our nursing school. Engage in hands-on learning, cutting-edge research, and compassionate patient care. Join us in shaping the future of healthcare excellence.",
+    },
+    {
+      id: 3,
+      header: "WELCOME FRESHERS",
+      buttonInfo: "Read more",
+      image: p2,
+      desc: "New students at Heritage Christian University College bring energy and curiosity to campus life. Engaging in orientation, connecting with peers, and exploring academics, they thrive in a supportive environment, setting the stage for a transformative higher education experience.",
+    },
+    {
+      id: 4,
+      buttonInfo: "Apply Now",
+      image: gra1,
+      header: "JANUARY 2024 ADMISSIONS",
+      desc: "Admissions Open! Join us for an enriching academic experience. Apply now.",
+    },
+    {
+      id: 5,
+      buttonInfo: "Apply Now",
+      image: lib1,
+      header: "Immerse in Academic Excellence",
+      desc: "Our state-of-the-art library offers a tranquil haven for students, fostering a conducive learning environment. Dive into a world of knowledge, research, and academic exploration as you embark on your educational journey with us.",
+    },
+    {
+      id: 6,
+      buttonInfo: "Apply Now",
+      image: group1,
+      header: "Community of Achievers",
+      desc: "Capturing a moment of unity and camaraderie, our students celebrate shared aspirations and accomplishments. Together, we form a vibrant community where each individual contributes to the collective success of our academic family.",
+    },
+
+    {
+      id: 7,
+      buttonInfo: "Apply Now",
+      image: p3,
+      header: "WELCOME FRESHERS",
+      desc: "New students at Heritage Christian University College bring energy and curiosity to campus life. Engaging in orientation, connecting with peers, and exploring academics, they thrive in a supportive environment, setting the stage for a transformative higher education experience.",
+    },
+  ];
 
   return (
     <>
       <div className={styles.parent}>
-        <div className={styles.slide1}>
-          <h1 className={styles.header}>
-            <span>Welcome freshers</span>
-          </h1>
-          <p>
-            At Heritage Christian University College, freshmen bring a fresh
-            energy and curiosity to campus life. As they navigate their first
-            year, these students engage in orientation activities, connect with
-            their peers, and explore academic pursuits. The university is
-            committed to providing a supportive environment where freshmen can
-            thrive academically and personally, setting the stage for a
-            transformative higher education experience
-          </p>
-        </div>
-        <div className={styles.slide2}>
-          <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, Scrollbar, Autoplay, A11y]}
-            spaceBetween={0}
-            slidesPerView={1}
-            navigation
-            autoplay={{
-              delay: 4000,
-            }}
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-          >
-            {slides.map((item, index) => (
-              <SwiperSlide key={index}>
-                {" "}
-                <img
-                  key={index}
-                  className={styles.image}
-                  src={item}
-                  alt="Your browser doesn't support this image"
+        <Swiper
+          // install Swiper modules
+          modules={[Navigation, Autoplay, Pagination, Scrollbar, A11y]}
+          spaceBetween={0}
+          slidesPerView={1}
+          // navigation
+
+          scrollbar={{ draggable: true }}
+          autoplay={{
+            delay: 5000,
+          }}
+        >
+          {infoCards.map((item, index) => (
+            <SwiperSlide key={index}>
+              {
+                <InfoCard
+                  title={item.header}
+                  key={item.id}
+                  buttonInfo={item.buttonInfo}
+                  desc={item.desc}
+                  image={item.image}
                 />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
+              }
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </>
   );

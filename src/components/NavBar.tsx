@@ -1,16 +1,32 @@
 import styles from "../styles/NavBar.module.css";
 import logo from "../assets/logos/HCC-LOGO-NEW-SLOGAN-123.webp";
-import { Button } from "@chakra-ui/react";
+import { Button, useColorMode } from "@chakra-ui/react";
 import { useState } from "react";
-import { ImMenu3 } from "react-icons/im";
+import { RiMenu3Fill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
+import { IoHomeOutline } from "react-icons/io5";
+
+import { Link } from "react-router-dom";
+import { IoMdSchool } from "react-icons/io";
+import { IoLibrary } from "react-icons/io5";
+import { MdOutlineContactPhone } from "react-icons/md";
+import { BiSolidDonateHeart } from "react-icons/bi";
+import { GrUserAdmin } from "react-icons/gr";
+import { FaBookOpen } from "react-icons/fa";
+import { VscServerEnvironment } from "react-icons/vsc";
+import { TbSchool } from "react-icons/tb";
+import ColorModeSwitch from "./ColorModeSwitch";
 
 const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const { colorMode } = useColorMode();
+
+  const borderStyle =
+    colorMode === "light" ? "1px solid #509495" : "1px solid #fbf189";
 
   return (
     <>
-      <nav className={styles.nav}>
+      <nav style={{ borderBottom: borderStyle }} className={styles.nav}>
         <div className="nameBox">
           <img
             className={styles.logo}
@@ -43,25 +59,64 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <div className="iconsBox">
-          {" "}
+        <div className={styles.iconsBox}>
+          <Link to={"/"}>
+            <IoHomeOutline color="" className={styles.icon} size={"20"} />
+          </Link>
+
+          <ColorModeSwitch />
+
           {showMenu ? (
             <IoIosCloseCircle
               onClick={() => setShowMenu(false)}
               className={styles.icon}
-              size={"35"}
+              size={"20"}
             />
           ) : (
-            <ImMenu3
+            <RiMenu3Fill
               onClick={() => setShowMenu(true)}
               className={styles.icon}
-              size={"35"}
+              size={"20"}
             />
           )}
         </div>
-      </nav>
-
-      <div className="verticalBox"></div>
+      </nav>{" "}
+      {showMenu && (
+        <ul className={styles.verticalNav}>
+          <li>
+            <IoMdSchool className={styles.liIcon} />
+            About Heritage
+          </li>
+          <li>
+            <FaBookOpen className={styles.liIcon} />
+            Academics
+          </li>
+          <li>
+            <GrUserAdmin className={styles.liIcon} />
+            Admissions
+          </li>
+          <li>
+            <TbSchool className={styles.liIcon} />
+            Schools
+          </li>
+          <li>
+            <IoLibrary className={styles.liIcon} />
+            Library
+          </li>
+          <li>
+            <VscServerEnvironment className={styles.liIcon} />
+            Campus
+          </li>
+          <li>
+            <MdOutlineContactPhone className={styles.liIcon} />
+            Contact us
+          </li>
+          <li>
+            <BiSolidDonateHeart className={styles.liIcon} />
+            Donate
+          </li>
+        </ul>
+      )}
     </>
   );
 };
