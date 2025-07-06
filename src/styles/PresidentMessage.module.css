@@ -1,10 +1,4 @@
-/* src/styles/PresidentMessage.module.css */
 
-/*
-   IMPORTANT:
-   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
-   are defined and accessible. This module relies on them.
-*/
 
 .presidentMessageSection {
   padding: 5rem 1.5rem; /* Generous padding top/bottom */

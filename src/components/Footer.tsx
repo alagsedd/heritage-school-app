@@ -1,8 +1,6 @@
 import { useColorMode } from "@chakra-ui/react";
 import styles from "../styles/Footer.module.css"; // Ensure path is correct
 
-// You might want to use actual icon libraries like react-icons for these
-// For now, these are just placeholders
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {

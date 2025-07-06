@@ -1,4 +1,3 @@
-import React from 'react';
 import { useColorMode } from "@chakra-ui/react"; // Import useColorMode
 import styles from "../styles/StudyAreas.module.css"; // Import the CSS module
 
@@ -20,9 +19,7 @@ const StudyAreas = () => {
           <span>Areas of Study</span>
         </h2>
 
-        <p className={styles.accreditation}>
-          Chartered and Accredited by GTEC
-        </p>
+        <p className={styles.accreditation}>Chartered and Accredited by GTEC</p>
 
         <ul className={styles.schoolsList}>
           {schools.map((school, index) => (
@@ -33,13 +30,13 @@ const StudyAreas = () => {
         </ul>
 
         <p className={styles.programDescription}>
-          Both our undergraduate and graduate programmes are essentially designed to match current and future global challenges and opportunities.
+          Both our undergraduate and graduate programmes are essentially
+          designed to match current and future global challenges and
+          opportunities.
         </p>
 
         <div className={styles.applyButtonContainer}>
-          <button className={styles.applyButton}>
-            Apply now
-          </button>
+          <button className={styles.applyButton}>Apply now</button>
         </div>
       </div>
     </section>

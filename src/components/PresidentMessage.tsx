@@ -1,4 +1,3 @@
-import React from "react";
 import { useColorMode } from "@chakra-ui/react";
 import styles from "../styles/PresidentMessage.module.css";
 import presidentPic from "../assets/president.jpg"; // Ensure this path is correct
