@@ -1,15 +1,18 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "./NavBar";
-import { useColorMode } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react"; // Assuming Chakra UI's useColorMode is used for theme toggling
+import NavBar from "./NavBar"; // Make sure NavBar is imported correctly
+
+import styles from "../styles/Layout.module.css"; // Import the new CSS module
 
 const Layout = () => {
-  const { colorMode } = useColorMode();
-  const backgroundColor = colorMode === "light" ? "#ddeaee" : "#1b212a";
+  const { colorMode } = useColorMode(); // Get the current color mode
 
   return (
     <>
-      <div style={{ backgroundColor: backgroundColor }} className="parent">
-        {" "}
+      <div
+        className={styles.parent} // Apply the CSS module class
+        data-theme={colorMode} // Apply the data-theme attribute based on colorMode
+      >
         <NavBar />
         <Outlet />
       </div>

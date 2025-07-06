@@ -1,14 +1,50 @@
-* {
-    /* color: #b2b2b6; */
-    margin: 0;
-    padding: 0;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+/* In your global CSS file, e.g., src/index.css or src/App.css */
+
+:root {
+  /* --- Dark Theme Colors (Current "Nice Black") --- */
+  --color-primary-dark: #121212;      /* Deepest Black */
+  --color-secondary-dark: #1a1a1a;     /* Slightly lighter deep black */
+  --color-tertiary-dark: #202020;     /* Another shade of deep black */
+  --color-text-dark: #e0e0e0;         /* Light gray text */
+  --color-text-muted-dark: #b0b0b0;   /* Muted light gray text */
+  --color-accent-blue-dark: #4a90e2;  /* Vibrant blue accent */
+  --color-accent-pink-dark: #e91e63;  /* Vibrant pink accent */
+  --color-highlight-dark: #fdd835;    /* Golden yellow highlight */
+  --color-border-dark: #333333;       /* Dark gray border */
+  --shadow-dark-subtle: rgba(0, 0, 0, 0.4);
+  --shadow-dark-intense: rgba(0, 0, 0, 0.8);
+
+  /* --- Light Theme Colors (Redesigned for "Nice White") --- */
+  --color-bg-light: #ffffff;         /* Pure white for main backgrounds */
+  --color-bg-light-alt: #f8f8f8;     /* Very subtle off-white for subtle section contrast */
+  --color-gray-light: #f0f0f0;       /* Light gray for section backgrounds, footer, etc. */
+  --color-text-light: #333333;       /* Dark gray for primary text (good readability) */
+  --color-text-light-muted: #666666; /* Medium gray for secondary/muted text */
+  --color-primary-light: #004d40;    /* A deep, rich forest green/teal for strong accents/headings */
+  --color-secondary-light: #c8e6c9;  /* Light green for subtle elements (e.g., button backgrounds) */
+  --color-accent-blue-light: #2196f3;/* Bright blue, vibrant but clean for light theme */
+  --color-accent-pink-light: #ff4081;/* Bright pink, vibrant but clean for light theme */
+  --color-highlight-light: #ffc107;  /* Amber/Yellow for highlights (matching the golden feel) */
+  --color-border-light: #e0e0e0;     /* Light gray for borders, subtle separation */
+  --shadow-light-subtle: rgba(0, 0, 0, 0.1);
+  --shadow-light-intense: rgba(0, 0, 0, 0.25);
+
+  /* --- Shared Variables --- */
+  --font-family-heading: 'Roboto', sans-serif; /* Example font */
+  --font-family-body: 'Open Sans', sans-serif; /* Example font */
+  --transition-speed: 0.3s ease-in-out;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
 }
 
-body {
-    position: relative;
-    /* color: #9aacc6 !important;
-    background-color: #021524 !important; */
+/* Base body styling (ensure this is applied to your <body> or <html>) */
+body[data-theme='light'] {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+body[data-theme='dark'] {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-dark);
 }

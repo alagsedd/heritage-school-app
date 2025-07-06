@@ -1,65 +1,248 @@
-/* styles for 300px */
-.parent {
-    display: flex;
-    overflow-x: scroll;
-    padding: 0.4rem;
-    margin-top: 0.4rem;
+/* src/styles/Part2.module.css */
+
+/*
+   IMPORTANT:
+   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
+   are defined and accessible. This module will rely on them.
+   If you don't have a global CSS file for variables, you'll need to define them here
+   or wherever they are globally accessible.
+
+   These are the variables that should be globally defined:
+   --color-primary-light
+   --color-secondary-light
+   --color-text-light
+   --color-bg-light
+   --color-border-light
+   --color-highlight-light
+   --color-primary-dark: #0F172A;
+   --color-secondary-dark: #1E293B;
+   --color-text-dark: #E2E8F0;
+   --color-text-muted-dark: #94A3B8;
+   --color-border-dark: #334155;
+   --color-highlight-dark: #FFD700;
+   --color-accent-blue-dark: #38BDF8;
+   --color-accent-pink-dark: #F472B6;
+   --shadow-dark-intense: rgba(0, 0, 0, 0.75);
+   --shadow-dark-subtle: rgba(0, 0, 0, 0.45);
+   --font-family-heading: 'Playfair Display', serif;
+   --font-family-body: 'Lato', sans-serif;
+   --transition-speed: 0.3s ease;
+   --border-radius-md: 8px;
+*/
+
+/* --- Base Section Styling --- */
+.part2Section {
+  padding: 2rem 1.5rem;
+  font-family: var(--font-family-body);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
 }
+
+/* Light Mode Defaults */
+.part2Section[data-theme='light'] {
+  background-color: var(--color-bg-light); /* Assuming light background from Layout or global */
+  color: var(--color-text-light);
+}
+
+/* Dark Mode Defaults */
+.part2Section[data-theme='dark'] {
+  background-color: var(--color-primary-dark); /* Deeper black background for the section */
+  color: var(--color-text-dark);
+}
+
+/* --- Main Header "Our five core Values" --- */
 .header1 {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
+  margin-top: 1rem;
+  text-align: center; /* Use text-align for h2, not flex on h2 */
+  margin-bottom: 2.5rem; /* More space below header */
 }
+
 .header1 span {
-    font-size: 1.7rem;
-    color:  #fbf189;
-    font-weight: 500;
-}
-.one {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background-color: #109aef;
-    padding: 0.3rem;
-    margin: 0.4rem;
-    width: 14rem;
-    height: 10rem;
-}
-.one p {
-    padding: 0.3rem;
-    margin-top: 0.1rem;
-    color: #fff;
+  font-family: var(--font-family-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem); /* Responsive font size */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.5rem; /* Space for underline */
 }
 
-.two {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 10px;
-    padding: 0.3rem;
-    margin: 0.4rem;
-    width: 14rem;
-    height: 10rem;
-    background-color: rgb(225, 30, 134);
-}
-.two p {
-    color: #fff;
-    margin-top: 0.3rem;
-}
-.header2 {
-    padding-left: 0.3rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: flex-start;
-}
-.header2 span {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #fff;
+/* Underline effect for the main header */
+.header1 span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 70px; /* Underline width */
+  height: 3px;
+  border-radius: 2px;
+  transition: background-color var(--transition-speed);
 }
 
+/* Header Span Color & Underline in Light Mode */
+.part2Section[data-theme='light'] .header1 span {
+  color: var(--color-primary-light); /* Example from your original nav or a dark text */
+}
+.part2Section[data-theme='light'] .header1 span::after {
+  background-color: var(--color-highlight-light); /* Accent color for underline */
+}
+
+/* Header Span Color & Underline in Dark Mode */
+.part2Section[data-theme='dark'] .header1 span {
+  color: var(--color-highlight-dark); /* Golden yellow accent in dark mode */
+}
+.part2Section[data-theme='dark'] .header1 span::after {
+  background-color: var(--color-accent-pink-dark); /* Pink accent for underline */
+}
+
+
+/* --- Values Grid Container --- */
+.valuesGrid {
+  display: flex;
+  overflow-x: scroll; /* Keep horizontal scroll for mobile */
+  padding: 0.5rem;
+  gap: 1.5rem; /* Space between cards */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera */
+.valuesGrid::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Individual Value Cards --- */
+.valueCard {
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem 1rem;
+  width: 16rem; /* Slightly larger fixed width for better content display */
+  min-height: 12rem; /* Adjusted height */
+  transition: background-color var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+  border: 1px solid; /* For accent border */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Light Mode Card Styling */
+.part2Section[data-theme='light'] .valueCard {
+  background-color: var(--color-bg-light); /* White/light background */
+  color: var(--color-text-light); /* Dark text */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Card Styling - using the new deeper black */
+.part2Section[data-theme='dark'] .valueCard {
+  background-color: var(--color-secondary-dark); /* Slightly lighter deep black for cards */
+  color: var(--color-text-dark); /* Light text on card */
+  box-shadow: 0 6px 15px var(--shadow-dark-subtle); /* Deeper shadow */
+}
+
+/* Specific Accent Borders for Cards */
+.part2Section[data-theme='light'] .blueAccent {
+  border-color: var(--color-primary-light); /* Light blue accent border */
+}
+.part2Section[data-theme='dark'] .blueAccent {
+  border-color: var(--color-accent-blue-dark); /* Dark mode blue accent border */
+}
+
+.part2Section[data-theme='light'] .pinkAccent {
+  border-color: var(--color-accent-pink); /* Assuming a pink accent for light mode */
+}
+.part2Section[data-theme='dark'] .pinkAccent {
+  border-color: var(--color-accent-pink-dark); /* Dark mode pink accent border */
+}
+
+/* --- Card Headers (e.g., "Conviction") --- */
+.valueCardHeader {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-bottom: 0.3rem; /* Space for subtle underline */
+}
+
+.valueCardHeader span {
+  font-family: var(--font-family-heading);
+  font-size: 1.5rem; /* Larger header text */
+  font-weight: 600;
+  transition: color var(--transition-speed);
+}
+
+/* Header Text Color in Light Mode */
+.part2Section[data-theme='light'] .valueCardHeader span {
+  color: var(--color-primary-light); /* Or a dark text color */
+}
+
+/* Header Text Color in Dark Mode */
+.part2Section[data-theme='dark'] .valueCardHeader span {
+  color: var(--color-text-dark); /* Main text color for card headers */
+}
+
+/* Subtle Underline for Card Headers */
+.valueCardHeader::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px; /* Shorter underline */
+  height: 2px;
+  border-radius: 1px;
+  transition: background-color var(--transition-speed);
+}
+
+.part2Section[data-theme='light'] .blueAccent .valueCardHeader::after {
+  background-color: var(--color-primary-light);
+}
+.part2Section[data-theme='dark'] .blueAccent .valueCardHeader::after {
+  background-color: var(--color-accent-blue-dark); /* Blue accent underline */
+}
+
+.part2Section[data-theme='light'] .pinkAccent .valueCardHeader::after {
+  background-color: var(--color-accent-pink);
+}
+.part2Section[data-theme='dark'] .pinkAccent .valueCardHeader::after {
+  background-color: var(--color-accent-pink-dark); /* Pink accent underline */
+}
+
+
+/* --- Card Descriptions (Paragraphs) --- */
+.valueCardDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+  padding: 0 0.5rem; /* Inner padding for text */
+  transition: color var(--transition-speed);
+}
+
+/* Description Text Color in Light Mode */
+.part2Section[data-theme='light'] .valueCardDescription {
+  color: var(--color-text-light); /* Darker text */
+}
+
+/* Description Text Color in Dark Mode */
+.part2Section[data-theme='dark'] .valueCardDescription {
+  color: var(--color-text-muted-dark); /* Muted light text */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media screen and (min-width: 768px) {
+  .valuesGrid {
+    /* On larger screens, center the grid and allow wrapping */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); /* 16rem min width, flexible */
+    gap: 2rem; /* More space between cards */
+    justify-content: center; /* Center cards if they don't fill the row */
+    overflow-x: hidden; /* No horizontal scroll needed on larger screens */
+    max-width: 1200px; /* Max width for the grid */
+    margin: 0 auto; /* Center the grid container */
+    padding: 0; /* Remove horizontal padding, already centered */
+  }
+
+  .valueCard {
+    width: auto; /* Allow grid to determine width */
+  }
+}

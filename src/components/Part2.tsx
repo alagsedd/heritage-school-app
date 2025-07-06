@@ -1,54 +1,63 @@
 import { useColorMode } from "@chakra-ui/react";
-import styles from "../styles/Part2.module.css";
+import styles from "../styles/Part2.module.css"; // Ensure this path is correct
+
+// Define your core values in a data array
+const coreValues = [
+  {
+    name: "Conviction",
+    description:
+      "Belief in the intelligent Designer and steadfast adherence to truth.",
+    accent: "blue", // Used for alternating card accents
+  },
+  {
+    name: "Character",
+    description:
+      "Upholding integrity and trustworthiness in all aspects of life.",
+    accent: "pink",
+  },
+  {
+    name: "Creativity",
+    description:
+      "Determination to discover, develop, and deploy God-given gifts.",
+    accent: "blue",
+  },
+  {
+    name: "Compassion",
+    description: "Empathy and kindness demonstrated through service to others.",
+    accent: "pink",
+  },
+  {
+    name: "Community", // Assuming this might be the fifth value, can be changed back to Compassion if needed
+    description:
+      "Fostering an inclusive, supportive, and collaborative environment.",
+    accent: "blue",
+  },
+];
 
 const Part2 = () => {
-  const { colorMode } = useColorMode();
-  const spanColor = colorMode === "light" ? "#509495" : " #fbf189";
+  const { colorMode } = useColorMode(); // Get current color mode
 
   return (
-    <>
+    <section className={styles.part2Section} data-theme={colorMode}>
       <h2 className={styles.header1}>
-        <span style={{ color: spanColor }}>Our five core Values</span>
+        {/* The span color will now be controlled by CSS based on data-theme */}
+        <span>Our five core Values</span>
       </h2>
 
-      <div className={styles.parent}>
-        <div className={styles.one}>
-          <h3 className={styles.header2}>
-            <span>Conviction</span>
-          </h3>
-
-          <p>the intelligent Designer</p>
-        </div>
-
-        <div className={styles.two}>
-          <h3 className={styles.header2}>
-            <span>Character</span>
-          </h3>
-          <p>integrity and trustworhiness in all things</p>
-        </div>
-
-        <div className={styles.one}>
-          <h3 className={styles.header2}>
-            <span>Creativity</span>
-          </h3>
-          <p>determination to discover, develop and deploy God-given gifts</p>
-        </div>
-
-        <div className={styles.two}>
-          <h3 className={styles.header2}>
-            <span>Compassion</span>
-          </h3>
-          <p>determination to discover, develop and deploy God-given gifts</p>
-        </div>
-
-        <div className={styles.one}>
-          <h3 className={styles.header2}>
-            <span>Compassion</span>
-          </h3>
-          <p>determination to discover, develop and deploy God-given gifts</p>
-        </div>
+      <div className={styles.valuesGrid}>
+        {coreValues.map((value) => (
+          <div
+            key={value.name}
+            className={`${styles.valueCard} ${styles[value.accent + "Accent"]}`} // Apply base card style and accent style
+          >
+            <h3 className={styles.valueCardHeader}>
+              <span>{value.name}</span>
+            </h3>
+            <p className={styles.valueCardDescription}>{value.description}</p>
+          </div>
+        ))}
       </div>
-    </>
+    </section>
   );
 };
 

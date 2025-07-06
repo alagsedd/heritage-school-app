@@ -1,0 +1,202 @@
+/* src/styles/StudyAreas.module.css */
+
+/*
+   IMPORTANT:
+   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
+   are defined and accessible. This module relies on them.
+*/
+
+.studyAreasSection {
+  padding: 4rem 1.5rem; /* Generous padding */
+  text-align: center; /* Center align all content by default */
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Light Mode defaults for the section */
+.studyAreasSection[data-theme='light'] {
+  background-color: var(--color-bg-light); /* Light background */
+  color: var(--color-text-light); /* Dark text */
+}
+
+/* Dark Mode defaults for the section - using your nice black */
+.studyAreasSection[data-theme='dark'] {
+  background-color: var(--color-primary-dark); /* Deepest black background */
+  color: var(--color-text-dark); /* Light text */
+}
+
+.container {
+  max-width: 900px; /* Max width for content readability */
+  margin: 0 auto; /* Center the container */
+}
+
+/* --- Main Header "Areas of Study" --- */
+.mainHeader {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.mainHeader span {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2rem, 5vw, 3.2rem); /* Responsive font size */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.75rem; /* Space for underline */
+}
+
+/* Underline effect for the main header */
+.mainHeader span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100px; /* Underline width */
+  height: 4px;
+  border-radius: 2px;
+  transition: background-color var(--transition-speed);
+}
+
+/* Header Text & Underline in Light Mode */
+.studyAreasSection[data-theme='light'] .mainHeader span {
+  color: var(--color-primary-light); /* Strong dark color */
+}
+.studyAreasSection[data-theme='light'] .mainHeader span::after {
+  background-color: var(--color-highlight-light); /* Light mode accent */
+}
+
+/* Header Text & Underline in Dark Mode */
+.studyAreasSection[data-theme='dark'] .mainHeader span {
+  color: var(--color-highlight-dark); /* Golden yellow accent */
+}
+.studyAreasSection[data-theme='dark'] .mainHeader span::after {
+  background-color: var(--color-accent-pink-dark); /* Pink accent */
+}
+
+/* --- Accreditation Note --- */
+.accreditation {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  transition: color var(--transition-speed);
+}
+.studyAreasSection[data-theme='dark'] .accreditation {
+  color: var(--color-text-muted-dark); /* Muted text for dark mode */
+}
+
+/* --- Schools List --- */
+.schoolsList {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin-bottom: 2.5rem;
+  display: grid; /* Use grid for responsive columns */
+  grid-template-columns: 1fr; /* Single column on small screens */
+  gap: 1rem; /* Space between list items */
+  text-align: left; /* Align text left within list items */
+}
+
+.schoolItem {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  font-weight: 400;
+  position: relative;
+  padding-left: 1.8rem; /* Space for custom bullet/icon */
+  transition: color var(--transition-speed);
+}
+
+/* Custom bullet point */
+.schoolItem::before {
+  content: '\2022'; /* Unicode bullet point */
+  position: absolute;
+  left: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color var(--transition-speed);
+}
+
+/* School Item Colors in Light Mode */
+.studyAreasSection[data-theme='light'] .schoolItem {
+  color: var(--color-text-light);
+}
+.studyAreasSection[data-theme='light'] .schoolItem::before {
+  color: var(--color-highlight-light); /* Light mode accent for bullet */
+}
+
+/* School Item Colors in Dark Mode */
+.studyAreasSection[data-theme='dark'] .schoolItem {
+  color: var(--color-text-dark); /* Light text */
+}
+.studyAreasSection[data-theme='dark'] .schoolItem::before {
+  color: var(--color-accent-blue-dark); /* Blue accent for bullet */
+}
+
+
+/* --- Program Description --- */
+.programDescription {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  max-width: 700px; /* Limit width for readability */
+  margin-left: auto;
+  margin-right: auto;
+  transition: color var(--transition-speed);
+}
+
+/* Program Description Color in Dark Mode */
+.studyAreasSection[data-theme='dark'] .programDescription {
+  color: var(--color-text-muted-dark); /* Muted text */
+}
+
+/* --- Apply Button --- */
+.applyButtonContainer {
+  margin-top: 1.5rem;
+}
+
+.applyButton {
+  background-color: var(--color-accent-blue-dark); /* Main accent color for button */
+  color: var(--color-text-dark); /* Light text on button */
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform 0.2s ease, color var(--transition-speed);
+}
+
+.applyButton:hover {
+  background-color: var(--color-highlight-dark); /* Yellow accent on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Button Specifics */
+.studyAreasSection[data-theme='light'] .applyButton {
+  background-color: var(--color-primary-light); /* Or another suitable accent for light mode */
+  color: white; /* Dark button with white text */
+}
+.studyAreasSection[data-theme='light'] .applyButton:hover {
+  background-color: var(--color-highlight-light); /* Highlight color on hover */
+  color: var(--color-text-dark); /* Or a dark text color */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media screen and (min-width: 600px) {
+  .schoolsList {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .studyAreasSection {
+    padding: 6rem 2rem; /* More padding on large screens */
+  }
+  .schoolsList {
+    grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
+    gap: 2rem;
+  }
+}

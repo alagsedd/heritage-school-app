@@ -1,0 +1,166 @@
+/* src/styles/PresidentMessage.module.css */
+
+/*
+   IMPORTANT:
+   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
+   are defined and accessible. This module relies on them.
+*/
+
+.presidentMessageSection {
+  padding: 5rem 1.5rem; /* Generous padding top/bottom */
+  text-align: center; /* Center align for main elements */
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Light Mode defaults */
+.presidentMessageSection[data-theme='light'] {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+/* Dark Mode defaults - using your nice black */
+.presidentMessageSection[data-theme='dark'] {
+  background-color: var(--color-secondary-dark); /* Slightly lighter deep black for a subtle contrast with primary-dark */
+  color: var(--color-text-dark);
+}
+
+.container {
+  max-width: 960px; /* Max width for readability */
+  margin: 0 auto; /* Center the content */
+  padding: 0 1rem; /* Inner padding for smaller screens */
+}
+
+/* --- Main Header "Message from the President" --- */
+.mainHeader {
+  margin-bottom: 2.5rem; /* Space below header, before image */
+  position: relative;
+}
+
+.mainHeader span {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.2rem, 5.5vw, 3.5rem); /* Responsive, larger font for impact */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+/* Underline effect for the main header */
+.mainHeader span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 120px; /* Prominent underline */
+  height: 5px;
+  border-radius: 3px;
+  transition: background-color var(--transition-speed);
+}
+
+/* Header Text & Underline in Light Mode */
+.presidentMessageSection[data-theme='light'] .mainHeader span {
+  color: var(--color-primary-light);
+}
+.presidentMessageSection[data-theme='light'] .mainHeader span::after {
+  background-color: var(--color-highlight-light);
+}
+
+/* Header Text & Underline in Dark Mode */
+.presidentMessageSection[data-theme='dark'] .mainHeader span {
+  color: var(--color-highlight-dark); /* Golden yellow accent */
+}
+.presidentMessageSection[data-theme='dark'] .mainHeader span::after {
+  background-color: var(--color-accent-pink-dark); /* Pink accent */
+}
+
+/* --- President's Image Styling --- */
+.presidentImageWrapper {
+  margin-bottom: 3rem; /* Space below image, before content */
+  display: flex;
+  justify-content: center; /* Center the image horizontally */
+  align-items: center;
+}
+
+.presidentImage {
+  width: 180px; /* Fixed width for the image */
+  height: 180px; /* Fixed height for the image */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the circle without distortion */
+  border: 4px solid; /* Add a border */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+/* Light Mode Image Border & Shadow */
+.presidentMessageSection[data-theme='light'] .presidentImage {
+  border-color: var(--color-highlight-light); /* Light accent border */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Mode Image Border & Shadow */
+.presidentMessageSection[data-theme='dark'] .presidentImage {
+  border-color: var(--color-accent-blue-dark); /* Blue accent border */
+  box-shadow: 0 8px 25px var(--shadow-dark-subtle); /* Deeper shadow */
+}
+
+
+/* --- Message Content Paragraphs --- */
+.messageContent {
+  text-align: left; /* Align text left for better readability in paragraphs */
+  max-width: 800px; /* Limit paragraph width */
+  margin: 0 auto 3rem auto; /* Center content and provide bottom margin */
+}
+
+.paragraph {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem; /* Space between paragraphs */
+  transition: color var(--transition-speed);
+}
+
+/* Dark Mode paragraph text */
+.presidentMessageSection[data-theme='dark'] .paragraph {
+  color: var(--color-text-dark); /* Main light text */
+}
+
+/* --- Vision & Mission Link/Button --- */
+.visionMissionLink {
+  margin-top: 2rem;
+}
+
+.visionMissionButton {
+  display: inline-block; /* Allows padding and margin to work */
+  background-color: var(--color-accent-blue-dark); /* Primary accent for button */
+  color: var(--color-text-dark); /* Light text on button */
+  padding: 1rem 2.5rem;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none; /* Remove underline from link */
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform 0.2s ease, box-shadow var(--transition-speed);
+}
+
+.visionMissionButton:hover {
+  background-color: var(--color-highlight-dark); /* Golden yellow on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Button Specifics */
+.presidentMessageSection[data-theme='light'] .visionMissionButton {
+  background-color: var(--color-primary-light); /* Darker blue for light mode */
+  color: white; /* White text on dark button */
+}
+.presidentMessageSection[data-theme='light'] .visionMissionButton:hover {
+  background-color: var(--color-highlight-light); /* Accent color on hover */
+  color: var(--color-text-dark); /* Text color on hover */
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media screen and (min-width: 768px) {
+  .presidentMessageSection {
+    padding: 6rem 2rem; /* More padding on larger screens */
+  }
+}

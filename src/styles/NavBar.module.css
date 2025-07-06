@@ -1,96 +1,290 @@
-/* styles for 300px */
-.verticalNav {
-    border-radius: 5px;
-    list-style-type: none;
-    margin: 0.5rem;
-    padding: 0.3rem;
-    border: 1px solid  #9aacc6;
-}
-.verticalNav li {
-    letter-spacing: 0.01rem;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    margin: 0.3rem;
-    padding: 0.2rem 0.5rem;
-    font-weight: 500;
-    border: 1px solid #9aacc6;
-}
-.verticalNav li:hover {
-    cursor: pointer;
-    color: #fbf189;
-}
-.liIcon {
-    margin-right: 0.5rem;
-}
-.nav {
-    margin: 0.2rem;
-    padding: 0.2rem 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* border-bottom: 1px solid  #fbf189; */
-}
-.logo {
-    object-fit: cover;
-    filter: contrast(120%);
-    width: 11rem;
-    height: 3rem;
-}
-.icon:hover {
-    cursor: pointer;
-}
-.horizontalBox {
-    display: none;
-}
-.iconsBox {
-    display: flex;
-    justify-content: space-around;
-    /* border-bottom: 1px solid   #fbf189; */
-    width: 5rem;
-}
-/* styles for 1200px */
+:root {
+  /* ... existing light mode variables ... */
 
-@media screen and (min-width: 1200px){
-    .iconsBox {
-        display: none;
-    }
-    .nav {
-        margin: 0.3rem;
-        padding: 0 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid   #fbf189;
-    }
-    .horizontalBox {
-        display: flex;
-        flex-direction: column;
-        /* border: 1px solid  #9aacc6; */
-    }
-    .horizontalNav {
-        display: flex;
-        justify-content: space-evenly;
-        margin: 0.4rem;
-        list-style-type: none;
-        padding: 0.3rem;
-        /* border: 1px solid  #9aacc6; */
-    }
-    .horizontalNav li {
-        border-radius: 5px;
-        font-weight: 500;
-        border: 1px solid  #9aacc6;
-        margin: 0.3rem;
-        padding: 0.2rem 0.7rem;
-    }
-    .horizontalNav li:hover {
-        cursor: pointer;
-        color: #fbf189;
-    }
-    .logo {
-        width: 19rem;
-        height: 5rem;
-        filter: contrast(110%);
-        object-fit: cover;
-    }
+  /* Deep, Sophisticated Dark Mode Colors */
+  --color-primary-dark: #0F172A; /* A very deep, rich dark blue-grey (Slate 950) */
+  --color-secondary-dark: #1E293B; /* A slightly lighter, but still very deep blue-grey (Slate 900) */
+  --color-text-dark: #E2E8F0; /* Slightly desaturated light text for better contrast on these new blacks */
+  --color-text-muted-dark: #94A3B8; /* Muted text, still very readable */
+  --color-border-dark: #334155; /* A clear but subtle dark border */
+  --color-highlight-dark: #FFD700; /* Keeping accent gold */
+  --color-accent-blue-dark: #38BDF8; /* A brighter, more modern blue accent */
+  --color-accent-pink-dark: #F472B6; /* A brighter, more modern pink accent */
+
+  /* Shadows adjusted for deeper background */
+  --shadow-dark-intense: rgba(0, 0, 0, 0.75); /* Can go slightly higher opacity with these blacks */
+  --shadow-dark-subtle: rgba(0, 0, 0, 0.45);
+
+  /* ... existing font, spacing variables ... */
+  --transition-speed: 0.3s ease; /* Ensure this is defined as it's used */
+  --border-radius-md: 8px; /* Ensure this is defined as it's used */
+}
+
+/* --- NavBar Container --- */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  position: sticky; /* Sticky header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light mode default shadow */
+  transition: background-color var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+/* Light Mode Styles */
+.nav[data-theme='light'] {
+  background-color: var(--color-bg-light);
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-light);
+}
+
+/* Dark Mode Styles - Now using the new deep black variables */
+.nav[data-theme='dark'] {
+  background-color: var(--color-primary-dark); /* Using the deepest dark for the primary nav background */
+  border-bottom: 1px solid var(--color-border-dark); /* Subtle border for separation */
+  color: var(--color-text-dark); /* Light text on dark background */
+  box-shadow: 0 2px 10px var(--shadow-dark-subtle); /* Adjusted shadow intensity for dark mode */
+}
+
+/* --- Logo --- */
+.logoContainer {
+  flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.logo {
+  height: 3.5rem; /* Adjust height as needed */
+  width: auto;
+  object-fit: contain;
+  transition: filter var(--transition-speed);
+}
+
+/* Adjust logo filter for dark mode if needed, depending on logo design */
+.nav[data-theme='dark'] .logo {
+  filter: brightness(0.9) contrast(1.1); /* Example adjustment */
+}
+
+
+/* --- Utility Icons (Mobile Menu Toggle, Home Icon, Color Mode Switch) --- */
+.utilityIcons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between icons */
+}
+
+.icon {
+  color: inherit; /* Inherit color from parent nav */
+  transition: color var(--transition-speed);
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: var(--color-highlight-light); /* Light mode hover */
+}
+.nav[data-theme='dark'] .icon:hover {
+  color: var(--color-highlight-dark); /* Dark mode hover */
+}
+
+.menuToggleIcon {
+  /* Specific size for the menu toggle icon */
+  font-size: 1.8rem;
+}
+
+/* Hide desktop navigation by default (mobile-first) */
+.desktopNav {
+  display: none;
+}
+
+/* --- Mobile Menu Overlay (Vertical Navigation) --- */
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0; /* Start from top of viewport */
+  left: 0; /* Start from left of viewport */
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  /* Using rgba of your primary dark variable for the overlay */
+  background-color: rgba(15, 23, 42, 0.95); /* Equivalent to rgba(var(--color-primary-dark), 0.95) */
+  z-index: 999; /* Below main nav, above content */
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem; /* Space below fixed nav bar */
+  overflow-y: auto; /* Enable scrolling for long menus */
+  animation: slideInFromLeft 0.3s ease-out forwards; /* Simple slide-in animation */
+}
+
+.verticalNav {
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+  width: 100%;
+  max-width: 400px; /* Limit menu width on larger screens */
+  margin: 0 auto; /* Center menu content */
+}
+
+.verticalNav li {
+  margin-bottom: 0.8rem; /* Space between items */
+}
+
+.verticalNavLink {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Mobile Nav Link Colors (default for dark overlay) - Now using new variables */
+.verticalNavLink {
+  color: var(--color-text-dark); /* Light text on dark overlay */
+  background-color: transparent;
+}
+
+.verticalNavLink:hover {
+  /* Hover background for the deeper dark: using secondary dark with transparency */
+  background-color: rgba(30, 41, 59, 0.15); /* Equivalent to rgba(var(--color-secondary-dark), 0.15) */
+  color: var(--color-highlight-dark); /* Highlight on hover */
+}
+
+.liIcon {
+  font-size: 1.4rem; /* Icon size in mobile menu */
+  color: var(--color-highlight-dark); /* Accent color for icons */
+}
+
+.mobileNavSectionTitle {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-highlight-dark); /* Accent color for section titles */
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  /* Border for section title, using the new subtle border color */
+  border-bottom: 1px solid var(--color-border-dark);
+}
+
+.mobileApplyButtonContainer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.mobileApplyButton {
+  width: 80%; /* Make button wider in mobile menu */
+  padding: 0.8rem;
+  font-size: 1.1rem;
+}
+
+
+/* --- Desktop Navigation (min-width: 1024px, a common tablet/desktop breakpoint) --- */
+@media screen and (min-width: 1024px) {
+  .utilityIcons {
+    display: none; /* Hide menu toggle on desktop */
+  }
+
+  .desktopNav {
+    display: flex; /* Show desktop navigation */
+    flex-direction: column; /* Stack main and action nav */
+    align-items: flex-end; /* Align to the right */
+    flex-grow: 1; /* Allow desktop nav to take space */
+    gap: 0.5rem; /* Space between the two nav lists */
+  }
+
+  .actionNav,
+  .mainNav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem; /* Space between horizontal items */
+  }
+
+  .actionNav li,
+  .mainNav li {
+    position: relative;
+  }
+
+  .actionNavLink,
+  .mainNavLink {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0; /* Padding for click area */
+    position: relative; /* For underline effect */
+    transition: color var(--transition-speed);
+  }
+
+  /* Light Mode Link Colors */
+  .nav[data-theme='light'] .actionNavLink,
+  .nav[data-theme='light'] .mainNavLink {
+    color: var(--color-text-light);
+  }
+
+  /* Dark Mode Link Colors - Using new variables */
+  .nav[data-theme='dark'] .actionNavLink,
+  .nav[data-theme='dark'] .mainNavLink {
+    color: var(--color-text-dark);
+  }
+
+  /* Underline effect on hover */
+  .actionNavLink::after,
+  .mainNavLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-highlight-light); /* Light mode underline */
+    transition: width var(--transition-speed), left var(--transition-speed);
+  }
+  .nav[data-theme='dark'] .actionNavLink::after,
+  .nav[data-theme='dark'] .mainNavLink::after {
+    background-color: var(--color-highlight-dark); /* Dark mode underline */
+  }
+
+  .actionNavLink:hover::after,
+  .mainNavLink:hover::after {
+    width: 100%;
+    left: 0;
+  }
+
+  /* Text color on hover - Using new variables */
+  .actionNavLink:hover,
+  .mainNavLink:hover {
+    color: var(--color-highlight-light); /* Light mode hover */
+  }
+  .nav[data-theme='dark'] .actionNavLink:hover,
+  .nav[data-theme='dark'] .mainNavLink:hover {
+    color: var(--color-highlight-dark); /* Dark mode hover */
+  }
+
+  /* Specific styles for the "Apply" button */
+  .applyButton {
+    /* Chakra UI's Button component will handle most of its styling. */
+    /* Ensure it contrasts well in both modes. */
+    font-weight: 700;
+    /* Example override for consistency if needed */
+    /* background-color: var(--color-accent-blue); */
+    /* color: white; */
+    transition: all var(--transition-speed);
+  }
+
+  .applyButton:hover {
+    /* background-color: var(--color-accent-gold); */
+    transform: translateY(-2px);
+  }
+}
+
+/* --- Animations --- */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

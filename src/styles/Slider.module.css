@@ -1,0 +1,153 @@
+/* src/styles/Slider.module.css */
+
+/*
+   IMPORTANT:
+   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
+   are defined and accessible. This module relies on them.
+*/
+
+.sliderSection {
+  padding: 3rem 1.5rem; /* More vertical padding for better spacing */
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Light Mode defaults for the section */
+.sliderSection[data-theme='light'] {
+  background-color: var(--color-bg-light); /* Assuming the main light background */
+  color: var(--color-text-light);
+}
+
+/* Dark Mode defaults for the section - using your deepest black */
+.sliderSection[data-theme='dark'] {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-dark);
+}
+
+/* --- Section Header Styling --- */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem; /* Good space below the header */
+  position: relative; /* For the underline effect */
+}
+
+.sectionHeader span {
+  font-family: var(--font-family-heading); /* Assuming a heading font */
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.75rem; /* Space for the underline */
+}
+
+/* Underline effect for the section header */
+.sectionHeader span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 90px; /* Width of the underline */
+  height: 4px;
+  border-radius: 2px;
+  transition: background-color var(--transition-speed);
+}
+
+/* Header Text & Underline in Light Mode */
+.sliderSection[data-theme='light'] .sectionHeader span {
+  color: var(--color-primary-light); /* Or a strong dark text color */
+}
+.sliderSection[data-theme='light'] .sectionHeader span::after {
+  background-color: var(--color-highlight-light); /* Light mode accent for underline */
+}
+
+/* Header Text & Underline in Dark Mode */
+.sliderSection[data-theme='dark'] .sectionHeader span {
+  color: var(--color-highlight-dark); /* Golden yellow accent in dark mode */
+}
+.sliderSection[data-theme='dark'] .sectionHeader span::after {
+  background-color: var(--color-accent-blue-dark); /* Blue accent for underline */
+}
+
+/* --- Swiper Container --- */
+.sliderContainer {
+  /* Basic styling for the container holding the Swiper instance */
+  max-width: 1400px; /* Max width for larger screens */
+  margin: 0 auto; /* Center the slider */
+  position: relative; /* Essential for Swiper navigation positioning */
+  padding: 0 1rem; /* Some horizontal padding inside the container */
+}
+
+/* --- Swiper Navigation Arrows (Prev/Next) --- */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-highlight-light); /* Default light mode color for arrows */
+  font-size: 2.2rem; /* Larger arrows */
+  transition: color var(--transition-speed), transform 0.2s ease;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%);
+  z-index: 10; /* Ensure arrows are above cards */
+  /* Swiper applies positions (left/right) */
+}
+
+/* Dark mode specific styles for arrows */
+.sliderSection[data-theme='dark'] .swiper-button-next,
+.sliderSection[data-theme='dark'] .swiper-button-prev {
+  color: var(--color-accent-blue-dark); /* Your accent color for arrows */
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  transform: translateY(-50%) scale(1.08); /* Subtle hover effect */
+  color: var(--color-highlight-dark); /* Highlight on hover in dark mode */
+}
+/* Ensure hover works correctly in light mode too */
+.sliderSection[data-theme='light'] .swiper-button-next:hover,
+.sliderSection[data-theme='light'] .swiper-button-prev:hover {
+  color: var(--color-highlight-light); /* Highlight on hover in light mode */
+}
+
+
+/* Hide arrows on smaller screens for a cleaner mobile experience */
+@media (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none;
+  }
+}
+
+/* --- Swiper Pagination Dots --- */
+.swiper-pagination {
+  margin-top: 2rem; /* More space between slider and dots */
+  position: relative; /* Ensure it appears below content */
+}
+
+.swiper-pagination-bullet {
+  background: var(--color-border-light); /* Light mode inactive dot color */
+  opacity: 0.7;
+  width: 12px; /* Slightly larger dots */
+  height: 12px;
+  margin: 0 5px !important; /* Adjust spacing between dots */
+  transition: background-color var(--transition-speed), opacity var(--transition-speed);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-highlight-light); /* Light mode active dot color */
+  opacity: 1;
+}
+
+/* Dark mode specific styles for pagination dots */
+.sliderSection[data-theme='dark'] .swiper-pagination-bullet {
+  background: var(--color-border-dark); /* Dark mode inactive dot color */
+  opacity: 0.8;
+}
+
+.sliderSection[data-theme='dark'] .swiper-pagination-bullet-active {
+  background: var(--color-accent-pink-dark); /* Dark mode active dot color - use pink accent */
+  opacity: 1;
+}
+
+/* Responsive adjustments for spacing */
+@media (min-width: 1024px) {
+  .sliderSection {
+    padding: 4rem 2rem;
+  }
+}

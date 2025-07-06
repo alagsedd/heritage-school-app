@@ -1,0 +1,20 @@
+/* src/styles/Layout.module.css */
+
+.layoutContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition-speed);
+}
+
+/* Light Mode: Main background */
+.layoutContainer[data-theme='light'] {
+  background-color: var(--color-bg-light); /* Pure white or a very subtle off-white */
+  color: var(--color-text-light); /* Dark text for readability */
+}
+
+/* Dark Mode: Main background (already good) */
+.layoutContainer[data-theme='dark'] {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-dark);
+}

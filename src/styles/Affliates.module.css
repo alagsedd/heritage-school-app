@@ -1,0 +1,207 @@
+/* src/styles/Affiliates.module.css */
+
+/*
+   IMPORTANT:
+   Ensure your :root variables from your global CSS file (e.g., src/index.css or src/App.css)
+   are defined and accessible. This module relies on them.
+*/
+
+.affiliatesSection {
+  padding: 5rem 1.5rem; /* Generous padding */
+  text-align: center; /* Center align section content */
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Light Mode defaults for the section */
+.affiliatesSection[data-theme='light'] {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+/* Dark Mode defaults - using your nice black */
+.affiliatesSection[data-theme='dark'] {
+  background-color: var(--color-primary-dark); /* Deeper black for the section background */
+  color: var(--color-text-dark);
+}
+
+.container {
+  max-width: 1200px; /* Max width for the content */
+  margin: 0 auto; /* Center the container */
+  padding: 0 1rem;
+}
+
+/* --- Main Header "Affiliate Institutions and Centres" --- */
+.mainHeader {
+  margin-bottom: 3.5rem; /* More space below header */
+  position: relative;
+}
+
+.mainHeader span {
+  font-family: var(--font-family-heading);
+  font-size: clamp(2.2rem, 5vw, 3.2rem); /* Responsive font size */
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+/* Underline effect for the main header */
+.mainHeader span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 140px; /* Prominent underline */
+  height: 5px;
+  border-radius: 3px;
+  transition: background-color var(--transition-speed);
+}
+
+/* Header Text & Underline in Light Mode */
+.affiliatesSection[data-theme='light'] .mainHeader span {
+  color: var(--color-primary-light);
+}
+.affiliatesSection[data-theme='light'] .mainHeader span::after {
+  background-color: var(--color-highlight-light);
+}
+
+/* Header Text & Underline in Dark Mode */
+.affiliatesSection[data-theme='dark'] .mainHeader span {
+  color: var(--color-highlight-dark); /* Golden yellow accent */
+}
+.affiliatesSection[data-theme='dark'] .mainHeader span::after {
+  background-color: var(--color-accent-blue-dark); /* Blue accent */
+}
+
+/* --- Grid Container for Affiliate Cards --- */
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+  gap: 2rem; /* Space between cards */
+  justify-content: center; /* Center cards if they don't fill the row */
+  align-items: stretch; /* Ensure cards of equal height */
+}
+
+/* --- Individual Affiliate Card Styling --- */
+.affiliateCard {
+  background-color: var(--color-secondary-dark); /* Slightly lighter deep black for cards */
+  border-radius: var(--border-radius-md);
+  padding: 2rem;
+  box-shadow: 0 5px 15px var(--shadow-dark-subtle); /* Subtle shadow for depth */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push link to bottom if description varies */
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.2s ease;
+  border: 1px solid transparent; /* Base for themed border */
+}
+
+/* Card Styling in Light Mode */
+.affiliatesSection[data-theme='light'] .affiliateCard {
+  background-color: var(--color-bg-light); /* White/light background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-border-light);
+}
+
+/* Card Styling in Dark Mode */
+.affiliatesSection[data-theme='dark'] .affiliateCard {
+  background-color: var(--color-secondary-dark);
+  box-shadow: 0 6px 18px var(--shadow-dark-subtle);
+  border-color: var(--color-border-dark); /* Subtle border for definition */
+}
+
+.affiliateCard:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 10px 25px var(--shadow-dark-intense); /* More intense shadow on hover */
+}
+/* Light mode hover adjustment */
+.affiliatesSection[data-theme='light'] .affiliateCard:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* --- Card Name (Institution Name) --- */
+.cardName {
+  font-family: var(--font-family-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  transition: color var(--transition-speed);
+}
+
+/* Card Name Color in Light Mode */
+.affiliatesSection[data-theme='light'] .cardName {
+  color: var(--color-primary-light);
+}
+
+/* Card Name Color in Dark Mode */
+.affiliatesSection[data-theme='dark'] .cardName {
+  color: var(--color-highlight-dark); /* Golden accent for names */
+}
+
+/* --- Card Description --- */
+.cardDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem; /* Space before the link */
+  flex-grow: 1; /* Allows description to push link to bottom */
+  transition: color var(--transition-speed);
+}
+
+/* Card Description Color in Light Mode */
+.affiliatesSection[data-theme='light'] .cardDescription {
+  color: var(--color-text-light);
+}
+
+/* Card Description Color in Dark Mode */
+.affiliatesSection[data-theme='dark'] .cardDescription {
+  color: var(--color-text-muted-dark); /* Muted text for description */
+}
+
+/* --- Card Link/Button --- */
+.cardLink {
+  display: inline-block;
+  background-color: var(--color-accent-blue-dark); /* Blue accent for button */
+  color: var(--color-text-dark); /* Light text on button */
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color var(--transition-speed), transform 0.2s ease, color var(--transition-speed);
+  align-self: flex-start; /* Align button to the left within the card */
+  margin-top: 1rem; /* Space between description and button */
+}
+
+.cardLink:hover {
+  background-color: var(--color-highlight-dark); /* Golden yellow on hover */
+  transform: translateY(-2px); /* Slight lift */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Mode Link Styling */
+.affiliatesSection[data-theme='light'] .cardLink {
+  background-color: var(--color-primary-light);
+  color: white;
+}
+.affiliatesSection[data-theme='light'] .cardLink:hover {
+  background-color: var(--color-highlight-light);
+  color: var(--color-text-dark);
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 480px) {
+  .affiliateCard {
+    padding: 1.5rem;
+  }
+  .cardName {
+    font-size: 1.25rem;
+  }
+  .cardDescription {
+    font-size: 0.85rem;
+  }
+  .cardLink {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
